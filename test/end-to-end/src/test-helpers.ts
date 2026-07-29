@@ -47,18 +47,18 @@ export async function closeWorkbook(): Promise<void> {
   await Excel.run(async (context: Excel.RequestContext) => context.workbook.close(Excel.CloseBehavior.skipSave));
 }
 
-export function addTestResult(testValues: any[], resultName: string, resultValue: any, expectedValue: any) {
+export function addTestResult(testValues: any[], name: string, value: any, expectedValue: any) {
   testValues.push({
     expectedValue,
-    resultName,
-    resultValue,
+    name,
+    value,
   });
 }
 
 export function addErrorResult(testValues: any[], errorMessage: string) {
   testValues.push({
-    resultName: "test-error",
-    resultValue: errorMessage,
+    name: "test-error",
+    value: errorMessage,
     expectedValue: "no-error",
   });
 }
