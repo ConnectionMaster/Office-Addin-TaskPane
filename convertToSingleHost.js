@@ -289,8 +289,10 @@ async function main() {
 
     // Modify the manifest to include the name and id of the project
     const cmdLine = `npx office-addin-manifest modify ${manifestPath} -g ${appId} -d "${projectName}"`;
+    const execEnv = { ...process.env };
+    delete execEnv.npm_config_registry;
     await new Promise((resolve) => {
-      childProcess.exec(cmdLine, (error, stdout) => {
+      childProcess.exec(cmdLine, { env: execEnv }, (error, stdout) => {
         if (error) {
           console.error(`Error updating the manifest: ${error}`);
           process.exitCode = 1;
