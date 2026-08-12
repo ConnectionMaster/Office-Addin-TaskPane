@@ -305,4 +305,7 @@ async function main() {
   }
 }
 
-main();
+main().catch((err) => {
+   console.error(`Unhandled error: ${err instanceof Error ? err.message : err}`);
+   process.exitCode = 1;
+ });
